@@ -1,0 +1,118 @@
+/* General styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the orders page */
+.orders-container {
+  width: 150%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.orders-container:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Header section */
+.orders-container h3 {
+  font-size: 24px;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.MuiTable-root {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+.MuiTableHead-root {
+  background-color: #FF7058;
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  color: #333333;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.MuiTableBody-root .MuiTableCell-root {
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: left;
+  padding: 15px 20px;
+  font-size: 14px;
+  color: #555555;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.MuiTableBody-root .MuiTableRow-root {
+  transition: background-color 0.3s ease;
+}
+
+.MuiTableBody-root .MuiTableRow-root:hover {
+  background-color: #f0f8ff;
+}
+
+/* Order items list */
+.orders-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.orders-container ul li {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+/* No orders message */
+.orders-container .no-orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: #777777;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-spinner .MuiCircularProgress-root {
+  color: #ffcc00;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .orders-container {
+    padding: 10px;
+  }
+
+  .MuiTableCell-root {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .MuiTableHead-root .MuiTableCell-root {
+    font-size: 14px;
+  }
+}

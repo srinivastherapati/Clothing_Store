@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+#main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #324a5e; /* Updated background color */
+  border-bottom: 1px solid #ddd;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#title img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ff7058; /* Highlighted with the accent color */
+}
+
+#title h1 {
+  font-size: 1.5rem;
+  color: #ffffff; /* Updated to stand out on dark background */
+  font-family: "Roboto", sans-serif;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-links {
+  display: flex;
+  gap: 20px;
+}
+
+.header-link {
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  color: #ecf1f5; /* Light text for visibility */
+  transition: color 0.3s ease;
+}
+
+.header-link.strong-link {
+  font-weight: bold;
+  color: #ff7058; /* Accent color for emphasis */
+}
+
+.header-link:hover {
+  color: #ff7058; /* Updated hover effect to match the theme */
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-user span {
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+  color: #ecf1f5; /* Light text for readability */
+}
+
+.header-user .logout-button {
+  background-color: #ff7058; /* Accent color */
+  color: white;
+  font-size: 0.8rem;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.header-user .logout-button:hover {
+  background-color: #d6604d; /* Slightly darker shade for hover */
+}

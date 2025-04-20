@@ -1,0 +1,476 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(#f0f4f8, #e3e6eb);
+  color: #324a5e;
+  min-height: 100vh;
+}
+.product-variants-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.variant-item {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+
+#main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #324a5e;
+  color: #ffffff;
+}
+
+#main-header #title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#main-header #title img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #ff7058;
+}
+
+#main-header button {
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  background-color: #ff7058;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 3rem;
+}
+
+#main-header button:hover {
+  background-color: #d6604d;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+#meals {
+  width: 90%;
+  max-width: 70rem;
+  list-style: none;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.meal-item {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meal-item:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.meal-item article {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meal-item img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.meal-item h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.75rem 0;
+}
+
+.meal-item-description {
+  margin: 1rem;
+}
+
+.meal-item-price {
+  display: inline-block;
+  background-color: #ff7058;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.meal-item-actions {
+  margin-bottom: 1.5rem;
+}
+
+.cart h2 {
+  margin: 1rem 0;
+}
+
+.cart ul {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-actions .text-button {
+  color: #324a5e;
+}
+
+.modal-actions .text-button:hover,
+.modal-actions .text-button:active {
+  color: #ff7058;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem 0;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #324a5e;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.cart-item p {
+  margin: 0;
+}
+
+.cart-item-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cart-item-actions button {
+  cursor: pointer;
+  font-size: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #324a5e;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cart-item-actions button:hover,
+.cart-item-actions button:active {
+  background-color: #ff7058;
+  color: #ffffff;
+}
+
+.control {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  width: 100%;
+  max-width: 20rem;
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.control-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.button {
+  font: inherit;
+  cursor: pointer;
+  background-color: #324a5e;
+  border: 1px solid #324a5e;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:hover,
+.button:active {
+  background-color: #ff7058;
+  border-color: #ff7058;
+  color: #ffffff;
+}
+
+.text-button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #324a5e;
+}
+
+.text-button:hover,
+.text-button:active {
+  color: #ff7058;
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 80%;
+  max-width: 40rem;
+  animation: fade-slide-up 0.3s ease-out forwards;
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.price-and-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.modal-container {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-header button:hover {
+  color: #333;
+}
+
+/* Modal content */
+.modal-content {
+  padding: 40px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #007bff;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-footer button.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-footer button.save-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-footer button.cancel-btn {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.modal-footer button.cancel-btn:hover {
+  background-color: #e2e6ea;
+}
+
+/* Common Button Styles */
+.wishlist-button,
+.add-variant-button {
+  display: inline-block;
+  padding: 5px 8px;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Wishlist Button */
+/* .wishlist-button {
+  background-color: #ff4d4d; /* Red color for wishlist */
+  /* color: white;
+  border: none;
+} */
+
+/* .wishlist-button:hover {
+  background-color: #e63946; /* Darker red on hover */
+
+
+/* Add Variant Button */
+.add-variant-button {
+  background-color: #4caf50; /* Green color */
+  color: white;
+  border: none;
+}
+
+.add-variant-button:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Button Press Effect */
+.wishlist-button:active,
+.add-variant-button:active {
+  transform: scale(0.95);
+}
+
+
+/* Keyframe animation for modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
