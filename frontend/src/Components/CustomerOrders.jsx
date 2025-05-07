@@ -46,7 +46,7 @@ const CustomerOrders = () => {
     try {
       const response = await cancelOrder(id);
       if (response.status==="ok") {
-        alert("Order Cancelled, Refund Initiated");
+        alert("Order Cancelled, Waiting for admin approval.");
   
         // Update the UI without refreshing
         setOrders((prevOrders) =>
@@ -217,6 +217,7 @@ const CustomerOrders = () => {
                                 <TableRow>
                                   <TableCell>Product Name</TableCell>
                                   <TableCell>Quantity Bought</TableCell>
+                                  <TableCell>Size & Color</TableCell>
                                   <TableCell>Rate Product</TableCell>
                                 </TableRow>
                               </TableHead>
@@ -226,6 +227,9 @@ const CustomerOrders = () => {
                                     <TableCell>{product.name}</TableCell>
                                     <TableCell>
                                       {product.quantityBought}
+                                    </TableCell>
+                                    <TableCell>
+                                      {product.size} & {product.color}
                                     </TableCell>
                                     <TableCell>
                                       {renderStars(product.productId)}

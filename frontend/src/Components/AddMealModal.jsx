@@ -27,6 +27,7 @@ export default function AddMealModal({ open, onClose, currentProduct, isAdd }) {
   const [description, setDescription] = useState(
     currentProduct?.description || ""
   );
+  const [brand, setBrand] = useState(currentProduct?.brand || "");
   const[category, setCategory] = useState(currentProduct?.category || "");
   const [productVariants, setVariants] = useState({
     size: currentProduct?.productVariants?.size || "",
@@ -39,6 +40,7 @@ export default function AddMealModal({ open, onClose, currentProduct, isAdd }) {
   const handleVariantChange = (key, value) => {
     setVariants((prev) => ({ ...prev, [key]: value }));
   };
+  const categories = ["MEN", "WOMEN", "GIRLS", "BOYS", "KIDS"];
 
   const handleSubmit = async () => {
     const variantsArray = [
@@ -54,6 +56,7 @@ export default function AddMealModal({ open, onClose, currentProduct, isAdd }) {
       name,
       imageUrl,
       description,
+      brand,
       category:category.toUpperCase(),
       productVariants: variantsArray,
     };
@@ -115,13 +118,28 @@ export default function AddMealModal({ open, onClose, currentProduct, isAdd }) {
             required
           />
           <TextField
-            label="Category"
-            fullWidth
-            margin="normal"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-            />
+        select
+        label="Category"
+        fullWidth
+        margin="normal"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        required
+      >
+        {categories.map((cat) => (
+          <MenuItem key={cat} value={cat}>
+            {cat}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+    label="Brand"
+    fullWidth
+    margin="normal"
+    value={brand}
+    onChange={(e) => setBrand(e.target.value)}
+    required
+  />
 
           <Button
             variant="contained"

@@ -56,6 +56,7 @@ ordersRouter.post('/orders/place/:customerId', async (req, res) => {
                 productName: product.name,
                 quantity: fulfilledQuantity,
                 size: productVariant.size,
+                color: productVariant.color,
                 priceAtOrder: productVariant.price
             });
             const savedOrderItem = await orderItem.save(); 
@@ -79,6 +80,7 @@ ordersRouter.post('/orders/place/:customerId', async (req, res) => {
             orderDate: new Date(),
             status: "PLACED",
             totalAmount,
+            deliveryType:order.deliveryType.toUpperCase() || "PICK-UP",
             orderItemIds: orderItemList  // Ensure this contains data
         });
 
@@ -144,9 +146,11 @@ ordersRouter.get('/orders/customer/:customerId', async (req, res) => {
             return product ? {
                 productId: product._id,
                 name: product.name,
-                quantityBought: item.quantity
+                quantityBought: item.quantity,
+                size: item.size,
+                color: item.color,
             } : null;
-        }).filter(p => p !== null); // Remove any null values in case of missing products
+        }).filter(p => p !== null); 
 
         return orderDetails;
     }));
@@ -209,6 +213,7 @@ ordersRouter.get('/orders/getAllOrders', async (req, res) => {
                         name: product.name,
                         quantityBought: item.quantity,
                         size: item.size,
+                        color: item.color,
                         priceAtOrder: item.priceAtOrder
                     } : null;
                 }).filter(p => p !== null)  // Remove null values

@@ -77,15 +77,23 @@ export default function AddVariantModal({ product, onClose }) {
             ))}
           </select>
         </label>
-        <label>
-          Color:
-          <input
-            type="text"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            placeholder="Enter Color"
-          />
-        </label>
+        <div>
+  <label className="block font-medium mb-1">Color</label>
+  <select
+    value={color}
+    onChange={(e) => setColor(e.target.value)}
+    className="w-full border rounded-lg px-3 py-2"
+    required
+  >
+    <option value="">Select a color</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Red">Red</option>
+    <option value="Blue">Blue</option>
+    <option value="Green">Pink</option>
+    <option value="Yellow">Yellow</option>
+  </select>
+</div>
         <label>
           Price:
           <input

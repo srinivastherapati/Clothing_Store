@@ -17,6 +17,11 @@ const orderSchema = new Schema({
         type: Date,
         required: true
     },
+    deliveryType: {
+        type: String,
+        required: true,
+        default:"PICK-UP"
+    },
     totalAmount: {
         type: Number,
         required: true

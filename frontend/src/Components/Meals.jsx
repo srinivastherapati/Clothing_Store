@@ -169,7 +169,7 @@ export default function Meals({ isAdmin, isLoggedIn, setCurrentPage }) {
           </Select>
           <h4>Category</h4>
           <FormGroup>
-            {["MEN", "WOMEN", "TEEN", "KIDS"].map((category) => (
+            {["MEN", "WOMEN", "GIRLS","BOYS", "KIDS"].map((category) => (
               <FormControlLabel
                 key={category}
                 control={

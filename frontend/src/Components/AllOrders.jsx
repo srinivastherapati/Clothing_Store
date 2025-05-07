@@ -18,15 +18,34 @@ import { getAllOrders, updateOrderStatus } from "./ServerRequests";
 import ErrorPage from "./ErrorPage";
 import "./AllOrders.css";
 
-const statusOptions = [
+const deliveryStatusOptions = [
   "PLACED",
   "PREPARING",
-  "READY",
+  "SHIPPED",
+  "OUT FOR DELIVERY",
   "DELIVERED",
   "CANCELLED",
   "Cancelled (By User)",
   "Cancelled (By Admin)",
 ];
+
+const pickupStatusOptions = [
+  "PLACED",
+  "PREPARING",
+  "READY FOR PICKUP",
+  "PICKED UP",
+  "CANCELLED",
+  "Cancelled (By User)",
+  "Cancelled (By Admin)",
+];
+
+// Fallback if orderType is unknown or missing
+const getStatusOptions = (type) => {
+  if (type === "PICKUP") return pickupStatusOptions;
+  if (type === "DELIVERY") return deliveryStatusOptions;
+  return [];
+};
+
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -106,7 +125,7 @@ const AllOrders = () => {
                     <Select className="select-dropdown" defaultValue={order.products[0]?.name || ""}>
                       {order.products.map((product) => (
                         <MenuItem key={product.productId} value={product.name}>
-                          {`${product.name} (Qty: ${product.quantityBought})`}
+                          {`${product.name} (Qty: ${product.quantityBought} Size: ${product.size} Color: ${product.color})`}
                         </MenuItem>
                       ))}
                     </Select>
@@ -116,19 +135,24 @@ const AllOrders = () => {
                   <TableCell align="center">${order.totalPayment.toFixed(2)}</TableCell>
                   <TableCell align="center">{new Date(order.orderDate).toLocaleDateString()}</TableCell>
                   <TableCell>
-                  <Select
-  className="select-dropdown"
-  value={order.status} // Ensures a valid value
-  onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
-  disabled={order.status === "DELIVERED" || order.status === "CANCELLED"}
->
-  {statusOptions.map((option) => (
-    <MenuItem key={option} value={option}>
-      {option}
-    </MenuItem>
-  ))}
-</Select>
-                  </TableCell>
+  <Select
+    className="select-dropdown"
+    value={order.status}
+    onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
+    disabled={
+      order.status === "DELIVERED" ||
+      order.status === "CANCELLED" ||
+      order.status === "PICKED UP"
+    }
+  >
+    {getStatusOptions(order.deliveryType).map((option) => (
+      <MenuItem key={option} value={option}>
+        {option}
+      </MenuItem>
+    ))}
+  </Select>
+</TableCell>
+
                 </TableRow>
               ))
             ) : (
