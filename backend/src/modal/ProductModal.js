@@ -18,8 +18,7 @@ const productSchema = new Schema({
         required: true
     },
     brand:{
-        type: String,
-        required: true
+        type: String
     },
 
     rating:{

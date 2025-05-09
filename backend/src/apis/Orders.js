@@ -80,7 +80,7 @@ ordersRouter.post('/orders/place/:customerId', async (req, res) => {
             orderDate: new Date(),
             status: "PLACED",
             totalAmount,
-            deliveryType:order.deliveryType.toUpperCase() || "PICK-UP",
+            deliveryType:order.deliveryType.toUpperCase() || "PICKUP",
             orderItemIds: orderItemList  // Ensure this contains data
         });
 
@@ -127,6 +127,7 @@ ordersRouter.get('/orders/customer/:customerId', async (req, res) => {
             totalPayment: order.totalAmount,
             orderDate: order.orderDate,
             status: order.status,
+            deliveryType: order.deliveryType || "PICKUP",
             products: []
         };
 
@@ -202,6 +203,7 @@ ordersRouter.get('/orders/getAllOrders', async (req, res) => {
                 totalPayment: order.totalAmount,
                 orderDate: order.orderDate,
                 status: order.status,
+                deliveryType: order.deliveryType || "PICKUP",
                 customer: {
                     name: `${customer.firstName || "Unknown"} ${customer.lastName || ""}`.trim(),
                     email: customer.email || "Unknown"

@@ -229,7 +229,7 @@ const CustomerOrders = () => {
                                       {product.quantityBought}
                                     </TableCell>
                                     <TableCell>
-                                      {product.size} & {product.color}
+                                      {product.size}  {product.color}
                                     </TableCell>
                                     <TableCell>
                                       {renderStars(product.productId)}

@@ -24,6 +24,7 @@ export default function MealItem({
   const [showModal, setShowModal] = useState(false);
   const [showVariants, setShowVariants] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const [selectedVariantKey, setSelectedVariantKey] = useState("");
 
   console.log(localStorage.getItem("userDetails"))
   const userId=localStorage.getItem("userDetails")?.userId;
@@ -34,25 +35,36 @@ export default function MealItem({
   //   }
   // }, [product.id, isLoggedIn]);
 
-  function handleAddMeal() {
-    const matchingVariant = product.productVariants.find(
-      (variant) => variant.size === selectedSize && variant.color === selectColor 
-    );
+  const variantOptions = product.productVariants.map(
+    (variant) => ({
+      key: `${variant.size}__${variant.color}`, // internal value
+      label: `${variant.size} / ${variant.color}`, // displayed label
+      ...variant,
+    })
+  );
 
+  function handleAddMeal() {
+    const [size, color] = selectedVariantKey.split("__");
+  
+    const matchingVariant = product.productVariants.find(
+      (variant) => variant.size === size && variant.color === color
+    );
+  
     if (!matchingVariant) {
-      alert("Please select a valid size and color combination.");
+      alert("Please select a valid size/color combination.");
       return;
     }
-
+  
     cartContxt.addItems({
       ...product,
       size: matchingVariant.size,
       color: matchingVariant.color,
       price: matchingVariant.price,
     });
-
+  
     alert("Product Added to Cart");
   }
+  
 
   function handleWishlistToggle() {
     if (isInWishlist) {
@@ -93,40 +105,22 @@ export default function MealItem({
               </button>
             )}
 
-            <div className="price-and-options">
-              {!isAdmin && product.productVariants.length > 0 && (
-                <>
-                  <select
-                    value={selectedSize}
-                    onChange={(e) => setSelectedSize(e.target.value)}
-                    className="dropdown"
-                  >
-                    <option value="">Select Size</option>
-                    {[...new Set(product.productVariants.map((variant) => variant.size))].map(
-                      (size) => (
-                        <option key={size} value={size}>
-                          {size}
-                        </option>
-                      )
-                    )}
-                  </select>
-                  <select
-                    value={selectColor}
-                    onChange={(e) => setSelectColor(e.target.value)}
-                    className="dropdown"
-                  >
-                    <option value="">Select Color</option>
-                    {[...new Set(product.productVariants.map((variant) => variant.color))].map(
-                      (color) => (
-                        <option key={color} value={color}>
-                          {color}
-                        </option>
-                      )
-                    )}
-                  </select>
-                </>
-              )}
-            </div>
+<div className="price-and-options">
+  {!isAdmin && product.productVariants.length > 0 && (
+    <select
+      value={selectedVariantKey}
+      onChange={(e) => setSelectedVariantKey(e.target.value)}
+      className="dropdown"
+    >
+      <option value="">Select Size / Color</option>
+      {variantOptions.map((option) => (
+        <option key={option.key} value={option.key}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  )}
+</div>
           </div>
 
           <p className="meal-item-actions">

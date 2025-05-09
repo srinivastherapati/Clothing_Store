@@ -25,8 +25,6 @@ const deliveryStatusOptions = [
   "OUT FOR DELIVERY",
   "DELIVERED",
   "CANCELLED",
-  "Cancelled (By User)",
-  "Cancelled (By Admin)",
 ];
 
 const pickupStatusOptions = [
@@ -35,8 +33,6 @@ const pickupStatusOptions = [
   "READY FOR PICKUP",
   "PICKED UP",
   "CANCELLED",
-  "Cancelled (By User)",
-  "Cancelled (By Admin)",
 ];
 
 // Fallback if orderType is unknown or missing
