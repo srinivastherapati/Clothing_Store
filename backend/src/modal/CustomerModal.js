@@ -25,6 +25,23 @@ const customerSchema = new Schema({
         type: Boolean,
         default:false
     },
+    cartItems: [
+  {
+    productId: {
+      type: Schema.Types.ObjectId,
+      ref: "Product", 
+      required: true
+    },
+    size: String,
+    color: String,
+    quantity: {
+      type: Number,
+      default: 1
+    },
+    price: Number
+  }
+]
+
 
 });
 

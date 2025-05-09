@@ -43,27 +43,39 @@ export default function MealItem({
     })
   );
 
-  function handleAddMeal() {
-    const [size, color] = selectedVariantKey.split("__");
-  
-    const matchingVariant = product.productVariants.find(
-      (variant) => variant.size === size && variant.color === color
-    );
-  
-    if (!matchingVariant) {
-      alert("Please select a valid size/color combination.");
-      return;
-    }
-  
-    cartContxt.addItems({
-      ...product,
-      size: matchingVariant.size,
-      color: matchingVariant.color,
-      price: matchingVariant.price,
-    });
-  
-    alert("Product Added to Cart");
+  async function handleAddMeal() {
+  const [size, color] = selectedVariantKey.split("__");
+
+  const matchingVariant = product.productVariants.find(
+    (variant) => variant.size === size && variant.color === color
+  );
+
+  if (!matchingVariant) {
+    alert("Please select a valid size/color combination.");
+    return;
   }
+
+  const cartItem = {
+    userId: JSON.parse(localStorage.getItem("userDetails"))?.userId,
+    productId: product._id,
+    size: matchingVariant.size,
+    color: matchingVariant.color,
+    quantity: 1,
+    price: matchingVariant.price,
+  };
+
+  try {
+    await fetch("http://localhost:3001/cart/add-to-cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartItem),
+    });
+
+    alert("Product Added to Cart");
+  } catch (error) {
+    alert("Failed to add to cart: " + error.message);
+  }
+}
   
 
   function handleWishlistToggle() {

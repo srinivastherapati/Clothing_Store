@@ -49,5 +49,52 @@ customerRouter.get('/customer/get', async (req, res) => {
     }
 });
 
+
+// Add to Cart
+customerRouter.post("/cart/add-to-cart", async (req, res) => {
+  try {
+    const { userId, productId, size, color, quantity, price } = req.body;
+
+    const user = await Customer.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Check if item with same variant already exists
+    const existingItem = user.cartItems.find(
+      (item) =>
+        item.productId.toString() === productId &&
+        item.size === size &&
+        item.color === color
+    );
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      user.cartItems.push({ productId, size, color, quantity, price });
+    }
+
+    await user.save();
+    res.status(200).json({ message: "Added to cart" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+customerRouter.get("/cart/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await Customer.findById(userId).populate("cartItems.productId");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ cartItems: user.cartItems });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
+
 export default customerRouter;
 
